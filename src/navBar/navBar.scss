@@ -1,0 +1,29 @@
+.navBar {
+  display: flex;
+  width: 100%;
+  height: 6%;
+  background-color: #00ADB5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+
+  .link {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-decoration: none;
+    font-size: 1.2rem;
+    margin: 0 20px;
+    color: #393E46;
+    cursor: pointer;
+  }
+
+  .right{
+    position: absolute;
+    right: 0;
+    color: black;
+  }
+
+  .link:hover {
+    color: #EEEEEE;
+  }
+}

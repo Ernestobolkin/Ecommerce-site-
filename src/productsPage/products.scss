@@ -1,0 +1,27 @@
+.wholeItemsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  .itemContainer {
+    border: 1px solid black;
+    width: min-content;
+    margin: 20px;
+    text-align: center;
+    .titleContainer {
+      margin: 8px 0;
+      color: #393e46;
+    }
+    .priceContainer {
+      margin: 8px 0;
+      color: #364f6b;
+    }
+    .description {
+      color: #252A34;
+      font-size: 0.8rem;
+      padding: 0 10px;
+    }
+    img {
+      width: 300px;
+    }
+  }
+}
