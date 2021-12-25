@@ -24,9 +24,7 @@ export const CheckOut = (props) => {
       props.setCartCounter(props.cartCounter - 1);
       if (quantity <= 1) {
         let tempArr = props.cartCheck.filter((item) => {
-          if (item.id !== id) {
-            return item;
-          }
+          return item.id !== id && item;
         });
         props.setCartCheck(tempArr);
       }
