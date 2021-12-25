@@ -23,11 +23,7 @@ export class Products extends React.Component {
       return item.id === id;
     });
     if (this.props.cartCheck.length === 0 || bool === -1) {
-      console.log("hello world");
       quantity = quantity + 1;
-      // this.props.setSumToPay((prevState) => {
-      //   return prevState + +price * quantity;
-      // });
       tempArr.push({ id, title, img, price, quantity });
       this.props.setCartCheck([...this.props.cartCheck, ...tempArr]);
     } else {
@@ -42,8 +38,10 @@ export class Products extends React.Component {
       this.props.setCartCheck([...tempArr]);
     }
 
-    // console.log(this.props.sumToPay);
+    this.props.setSumToPay(this.props.sumToPay + +price);
+    console.log(this.props.sumToPay);
   };
+  // const [sumToPay, setSumToPay] = useState(0);
 
   renderItems = () => {
     return this.state.data.map((item) => {

@@ -10,6 +10,8 @@ const App = () => {
   const [cartCounter, setCartCounter] = useState(0);
   const [cartCheck, setCartCheck] = useState([]);
   const [sumToPay, setSumToPay] = useState(0);
+
+
   return (
     <div className="container">
       <BrowserRouter>

@@ -1,8 +1,9 @@
 import "./checkOut.scss";
 
 export const CheckOut = (props) => {
-  const updateQuantity = (id, text) => {
+  const updateQuantity = (id, text, price, quantity) => {
     if (text === "+") {
+      props.setSumToPay(props.sumToPay + +price);
       props.setCartCheck(
         props.cartCheck.map((item) => {
           return item.id === id
@@ -12,6 +13,7 @@ export const CheckOut = (props) => {
       );
       props.setCartCounter(props.cartCounter + 1);
     } else {
+      props.setSumToPay(props.sumToPay - +price);
       props.setCartCheck(
         props.cartCheck.map((item) => {
           return item.id === id
@@ -20,6 +22,14 @@ export const CheckOut = (props) => {
         })
       );
       props.setCartCounter(props.cartCounter - 1);
+      if (quantity <= 1) {
+        let tempArr = props.cartCheck.filter((item) => {
+          if (item.id !== id) {
+            return item;
+          }
+        });
+        props.setCartCheck(tempArr);
+      }
     }
   };
   const renderCheckOut = () => {
@@ -35,8 +45,22 @@ export const CheckOut = (props) => {
           </div>
           <div>quantity: {item.quantity}</div>
           <div className="buttons">
-            <button className="btn" onClick={() => updateQuantity(item.id, "+")}>+</button>
-            <button className="btn" onClick={() => updateQuantity(item.id, "-")}>-</button>
+            <button
+              className="btn"
+              onClick={() =>
+                updateQuantity(item.id, "+", item.price, item.quantity)
+              }
+            >
+              +
+            </button>
+            <button
+              className="btn"
+              onClick={() =>
+                updateQuantity(item.id, "-", item.price, item.quantity)
+              }
+            >
+              -
+            </button>
           </div>
           <hr />
         </div>
@@ -44,14 +68,22 @@ export const CheckOut = (props) => {
     });
   };
 
-  const payMethod=()=>{
-    props.setCartCheck([])
-    props.setCartCounter(0)
-  }
+  const payMethod = () => {
+    props.setCartCheck([]);
+    props.setCartCounter(0);
+    props.setSumToPay(0);
+  };
 
   return (
     <div className="checkOutContainer">
-      <button className="btn" onClick={()=> payMethod()}>Pay</button>
+      <div className="payContainer">
+        <button className="btn" onClick={() => payMethod()}>
+          Pay
+        </button>{" "}
+        <p className="total">
+          Total:<span> {props.sumToPay}</span>
+        </p>
+      </div>
       <div className="cartContainer">{renderCheckOut()}</div>
     </div>
   );
